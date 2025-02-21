@@ -5,6 +5,7 @@ from engine.config import ASSISTANT_NAME
 import os
 import pywhatkit as kit
 import re
+from hugchat import hugchat
 
 # playing assistant sound function
 @eel.expose
@@ -34,4 +35,15 @@ def extract_yt_term(command):
     #Use re,search to find the match in the command
     match = re.search(pattern, command, re.IGNORECASE)
     #if a match is found,return the extracted song name;
-    return match.group(1) if match else None
+    return match.group(1) if match else " "
+
+# chat bot 
+def chatBot(query):
+    user_input = query.lower()
+    chatbot = hugchat.ChatBot(cookie_path="engine\\cookies.json")
+    id = chatbot.new_conversation()
+    chatbot.change_conversation(id)
+    response =  chatbot.chat(user_input + "in 30 w0rds")
+    print(response)
+    speak(response)
+    return response

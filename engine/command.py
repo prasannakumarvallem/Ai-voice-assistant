@@ -32,9 +32,9 @@ def takecommand():
         print(f'User said: {query}')
         eel.DisplayMessage(query)
         time.sleep(2)
-       
+        
     except Exception as e:
-        return ""
+        return " "
     
     return query.lower()
 
@@ -46,18 +46,19 @@ def allCommands(message=1):
         print(query)
         eel.senderText(query)
     else:
-        query  = message
+        query  = str(message)
         eel.senderText(query)
     try:
        
         if "open" in query:
             from engine.features import openCommand
             openCommand(query)
-        elif "on youtube":
+        elif "on youtube" in query:
             from engine.features import PlayYoutube
             PlayYoutube(query)
         else:
-            print("error or features need to add")
-    except:
-        print("error")
+            from engine.features import chatBot
+            chatBot(query)
+    except Exception as e:
+        print(f"Error: {e}")
     eel.ShowHood()
