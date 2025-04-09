@@ -1,0 +1,5 @@
+/env1
+/engine/__pycache__
+/engine/cookies.json
+/engine/emotion_model.pkl
+/engine/__pycache__
